@@ -38,14 +38,3 @@ variable "AMIS" {
 }
 
 
-variable "path_to_private_key" {
-  default = ".vpc_demo_keys/my_key"
-}
-
-variable "path_to_public_key" {
-  default = ".vpc_demo_keys/my_key.pub"
-}
-
-variable "instance_username" {
-  default = "ubuntu"
-}

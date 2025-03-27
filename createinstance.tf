@@ -6,5 +6,5 @@ resource "aws_instance" "my_instance_example" {
     Name = "demoinstance"
   }
 
-  security_groups = "${var.Security_Group}"
+  security_groups = "${var.security_group}"
 }

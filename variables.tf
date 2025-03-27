@@ -21,10 +21,10 @@ variable "aws_secret_key" {
   sensitive   = true
 }
 
-variable "security_group" {
+variable "security_group"{
   description = "List of security group IDs"
-  type        = list(string)
-  default     = ["sg-24076", "sg-90890", "sg-456789"]
+  type        = string
+  default     = "sg-0a516f1184e7d2970"
 }
 
 variable "AMIS" {

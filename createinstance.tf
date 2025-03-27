@@ -1,8 +1,3 @@
-resource "aws_key_pair" "my_key" {
-  key_name = "my_key"
-  public_key = file(var.path_to_public_key)
-}
-
 
 resource "aws_instance" "my_instance_example" {
   ## ami hard coded, depends on the zone we uploading
@@ -13,7 +8,7 @@ resource "aws_instance" "my_instance_example" {
     Name = "demoinstance"
   }
 
-  security_groups = "${var.security_group}"
+   vpc_security_group_ids = [var.security_group]
 
   provisioner "file" {
     source = "installNginx.sh"
@@ -37,4 +32,11 @@ resource "aws_instance" "my_instance_example" {
 
 
 }
+
+resource "aws_key_pair" "my_key" {
+  # create pub key on instance for connecting to the machine. 
+  key_name = "my_key"
+  public_key = file(var.path_to_public_key)
+}
+
 

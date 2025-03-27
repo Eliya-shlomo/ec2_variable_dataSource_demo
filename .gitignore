@@ -1,2 +1,4 @@
 .terraform/
+.vpc_demo_keys/
 terraform.tfvars
+

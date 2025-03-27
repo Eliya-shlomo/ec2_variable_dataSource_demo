@@ -1,5 +1,6 @@
 resource "aws_instance" "my_instance_example" {
-  ami           = "ami-05803413c51f242b7"
+  ## ami hard coded, depends on the zone we uploading
+  ami           = lookup(var.AMIS, var.aws_region)
   instance_type = "t2.micro"
 
   tags = {
@@ -8,3 +9,4 @@ resource "aws_instance" "my_instance_example" {
 
   security_groups = "${var.security_group}"
 }
+

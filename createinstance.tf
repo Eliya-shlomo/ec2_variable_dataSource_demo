@@ -3,23 +3,25 @@ resource "aws_instance" "my_instance_example" {
   ## ami hard coded, depends on the zone we uploading
   ami           = lookup(var.AMIS, var.aws_region)
   instance_type = "t2.micro"
+  key_name      = aws_key_pair.my_key.key_name
+
 
   tags = {
-    Name = "demoinstance"
+    Name = "demoInstance"
   }
 
    vpc_security_group_ids = [var.security_group]
 
   provisioner "file" {
-    source = "installNginx.sh"
-    destination = "/tmp/installNginx.sh"
+      source = "installNginx.sh"
+      destination = "/tmp/installNginx.sh"
   }
 
   provisioner "remote-exec" {
     inline = [
       "chmod +x /tmp/installNginx.sh",
-      "sudo sed -i -e 's/\r$//' /tmp/installNginx.sh",
-      "sudo /tmp/installNginx.sh"
+      "sudo sed -i -e 's/\r$//' /tmp/installNginx.sh",  # Remove the spurious CR characters.
+      "sudo /tmp/installNginx.sh",
     ]
   }
 

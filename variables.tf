@@ -47,5 +47,5 @@ variable "path_to_public_key" {
 }
 
 variable "instance_username" {
-  default = "ubunto"
+  default = "ubuntu"
 }

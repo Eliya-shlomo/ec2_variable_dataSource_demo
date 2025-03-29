@@ -32,8 +32,14 @@ resource "aws_instance" "my_instance_example" {
     Name = "demoInstance"
   }
 
-   vpc_security_group_ids = [var.security_group]
+  vpc_security_group_ids = [var.security_group]
+
+  provisioner "local-exec" {
+    command = "echo ${aws_instance.my_instance_example.private_ip} >> my_private_ips.txt"
+  }
 }
+
+
 
 
 
